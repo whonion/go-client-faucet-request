@@ -5,6 +5,7 @@ Implementation with go-routines
  - main.go - main package to run or build
  - proxy.go - package for getting a proxy list from a remote site
  - proxy.txt - proxy list file in the protocol://ip:port@login@pass format
+ - batch generator of wallets with output of 'addresses.txt' file
  - addresses.txt - wallet's list for sending curl requests to target faucet's url
  - agents.txt - list of user-agents
 
