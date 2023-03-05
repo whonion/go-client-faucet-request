@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-cosmos1
-cosmos1
-=======
 cosmos1..
 cosmos1..
->>>>>>> 391c3d7 (fix commit)
+cosmos1..
+cosmos1..

@@ -35,15 +35,20 @@ func main() {
 	}
 
 	var wg sync.WaitGroup
-
 	for _, address := range addresses {
 		wg.Add(1)
 		go func(address string) {
 			defer wg.Done()
-
 			proxy := proxies[rand.Intn(len(proxies))]
 			var httpClient *http.Client
-			if strings.Contains(proxy, "http://") || strings.Contains(proxy, "https://") {
+			if strings.Contains(proxy, "http://") {
+				proxyURL, err := url.Parse(proxy)
+				if err != nil {
+					fmt.Println("Error parsing proxy URL:", err)
+					return
+				}
+				httpClient = &http.Client{Transport: &http.Transport{Proxy: http.ProxyURL(proxyURL)}}
+			} else if strings.Contains(proxy, "https://") {
 				proxyURL, err := url.Parse(proxy)
 				if err != nil {
 					fmt.Println("Error parsing proxy URL:", err)
@@ -80,7 +85,6 @@ func main() {
 			fmt.Printf("Response for address %s through proxy %s: %s\n", address, proxy, string(body))
 		}(address)
 	}
-
 	wg.Wait()
 }
 
