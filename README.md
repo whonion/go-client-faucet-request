@@ -11,6 +11,32 @@ Implementation with go-routines and without
  - addresses.txt - wallet's list for sending curl requests to target faucet's url
  - agents.txt - list of user-agents
 
-
+## How to run with shell(without build) :
+```sh
+ver="1.20" && \
+wget "https://golang.org/dl/go$ver.linux-amd64.tar.gz" && \
+sudo rm -rf /usr/local/go && \
+sudo tar -C /usr/local -xzf "go$ver.linux-amd64.tar.gz" && \
+rm "go$ver.linux-amd64.tar.gz" && \
+echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile && \
+source $HOME/.bash_profile && \
+go version \
+sudo apt-get install tmux \
+tmux new -s go_faucet
+```
+```sh
+git clone https://github.com/whonion/go-client-faucet-request.git \
+cd go-client-faucet-request \
+#make the file 'generatewallets.sh' executable
+chmod +x generatewallets.sh \
+# generate wallet addresses for the Tendermint node
+./generatewallets.sh \
+# add proxy to proxy.txt
+go run  ./main.go \
+```
+```sh
+# or run with goroutine
+go run  ./go-routine.go
+```
 [go-badge]: https://img.shields.io/badge/go-1.20-blue.svg
 [go-url]: https://go.dev
