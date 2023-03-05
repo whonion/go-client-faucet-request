@@ -8,6 +8,7 @@ Implementation with go-routines and without
  ## Description of required files:
  - proxy.txt - proxy list file in the protocol://ip:port@login@pass format
  - createwallets.sh  - batch generator of wallets with output of 'addresses.txt' file
+ - removewallets.sh - batch remover of wallets
  - addresses.txt - wallet's list for sending curl requests to target faucet's url
  - agents.txt - list of user-agents
 
@@ -27,15 +28,15 @@ tmux new -s go_faucet
 ```sh
 git clone https://github.com/whonion/go-client-faucet-request.git \
 cd go-client-faucet-request \
-#make the file 'generatewallets.sh' executable
+#make the file 'createwallets.sh ' executable
 chmod +x createwallets.sh \
-# generate wallet addresses for the Tendermint node
+# generate wallet addresses for the Tendermint node and out them in 'addresses.txt'
 ./createwallets.sh \
-# add proxy to proxy.txt
-go run  main.go \
+# add your proxy to proxy.txt. The number of proxies must match the number of addresses
+go run  main.go
 ```
 ```sh
-# or run with goroutine
+# or run with goroutine (recomended use it)
 go run  go-routine.go
 ```
 [go-badge]: https://img.shields.io/badge/go-1.20-blue.svg
