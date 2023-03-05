@@ -28,15 +28,15 @@ tmux new -s go_faucet
 git clone https://github.com/whonion/go-client-faucet-request.git \
 cd go-client-faucet-request \
 #make the file 'generatewallets.sh' executable
-chmod +x generatewallets.sh \
+chmod +x createwallets.sh \
 # generate wallet addresses for the Tendermint node
-./generatewallets.sh \
+./createwallets.sh \
 # add proxy to proxy.txt
-go run  ./main.go \
+go run  main.go \
 ```
 ```sh
 # or run with goroutine
-go run  ./go-routine.go
+go run  go-routine.go
 ```
 [go-badge]: https://img.shields.io/badge/go-1.20-blue.svg
 [go-url]: https://go.dev
