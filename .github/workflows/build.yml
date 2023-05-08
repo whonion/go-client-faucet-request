@@ -22,13 +22,13 @@ jobs:
         go-version: 1.20
 
     - name: Build main
-      run: go build -v main.go; go build -v go-routine.go
+      run: go build -v main.go
       
     - name: Build go-routine
-      run: go build -v main.go; go build -v go-routine.go
+      run: go build -v go-routine.go
       
     - name: Test main
-      run: go test -v main.go; go build -v go-routine.go
+      run: go test -v main.go
       
     - name: Test go-routine
-      run: go test -v main.go; go build -v go-routine.go
+      run: go test -v go-routine.go
