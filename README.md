@@ -1,4 +1,4 @@
- [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger) [![Go version][go-badge]][go-url] [![HitCount](https://hits.dwyl.com/whonion//go-client-faucet-request.svg)](https://hits.dwyl.com/whonion/go-client-faucet-request)
+[![Build](https://github.com/whonion/go-client-faucet-request/actions/workflows/build.yml/badge.svg)](https://github.com/whonion/go-client-faucet-request/actions/workflows/build.yml) [![Go version][go-badge]][go-url] [![HitCount](https://hits.dwyl.com/whonion//go-client-faucet-request.svg)](https://hits.dwyl.com/whonion/go-client-faucet-request)
 # Faucet-client for send multi-request to server using proxy</br>
 Implementation with go-routines and without
 ## Package description:
