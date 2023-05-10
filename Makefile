@@ -1,12 +1,26 @@
-BINARY_NAME=go-faucet
- 
-build:
-    go build -o ${BINARY_NAME} main.go
- 
-run:
-    go build -o ${BINARY_NAME} main.go
-    ./${BINARY_NAME}
- 
-clean:
-    go clean
-    rm ${BINARY_NAME}
+name: Makefile
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: '1.20'
+
+    - name: Makefile CLI
+      run: |
+        make all
