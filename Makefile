@@ -18,8 +18,13 @@ RESET  := $(shell tput -Txterm sgr0)
 all: help
 
 ## Build:
-build: ## Build your project and put the output binary in out/bin/
-	go build -o out/bin/$(BINARY_NAME) .
+build: build-main build-go-routine ## Build both main.go and go-routine.go
+
+build-main: ## Build main.go
+	go build -o out/bin/$(BINARY_NAME)-main main.go
+
+build-go-routine: ## Build go-routine.go
+	go build -o out/bin/$(BINARY_NAME)-go-routine go-routine.go
 
 clean: ## Remove build related file
 	rm -fr ./bin
@@ -34,21 +39,31 @@ watch: ## Run the code with cosmtrek/air to have automatic reload on changes
 	docker run -it --rm -w /go/src/$(PACKAGE_NAME) -v $(shell pwd):/go/src/$(PACKAGE_NAME) -p $(SERVICE_PORT):$(SERVICE_PORT) cosmtrek/air
 
 ## Test:
-test: ## Run the tests of the project
+test: test-main test-go-routine ## Run tests for both main.go and go-routine.go
+
+test-main: ## Run tests for main.go
 ifeq ($(EXPORT_RESULT), true)
 	GO111MODULE=off go get -u github.com/jstemmer/go-junit-report
 	$(eval OUTPUT_OPTIONS = | tee /dev/tty | go-junit-report -set-exit-code > junit-report.xml)
 endif
-	$(GOTEST) -v -race ./... $(OUTPUT_OPTIONS)
+	$(GOTEST) -v -race ./main.go $(OUTPUT_OPTIONS)
 
-coverage: ## Run the tests of the project and export the coverage
-	$(GOTEST) -cover -covermode=count -coverprofile=profile.cov ./...
-	$(GOCMD) tool cover -func profile.cov
+test-go-routine: ## Run tests for go-routine.go
 ifeq ($(EXPORT_RESULT), true)
-	GO111MODULE=off go get -u github.com/AlekSi/gocov-xml
-	GO111MODULE=off go get -u github.com/axw/gocov/gocov
-	gocov convert profile.cov | gocov-xml > coverage.xml
+	GO111MODULE=off go get -u github.com/jstemmer/go-junit-report
+	$(eval OUTPUT_OPTIONS = | tee /dev/tty | go-junit-report -set-exit-code > junit-report-go-routine.xml)
 endif
+	$(GOTEST) -v -race ./go-routine.go $(OUTPUT_OPTIONS)
+
+coverage: coverage-main coverage-go-routine ## Run coverage for both main.go and go-routine.go
+
+coverage-main: ## Run coverage for main.go
+	$(GOTEST) -cover -covermode=count -coverprofile=profile.cov ./main.go
+	$(GOCMD) tool cover -func profile.cov
+
+coverage-go-routine: ## Run coverage for go-routine.go
+	$(GOTEST) -cover -covermode=count -coverprofile=profile-go-routine.cov ./go-routine.go
+	$(GOCMD) tool cover -func profile-go-routine.cov
 
 ## Lint:
 lint: lint-go lint-dockerfile lint-yaml ## Run all available linters
