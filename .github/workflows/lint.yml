@@ -1,15 +1,26 @@
 name: Lint
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 jobs:
-  lint:
+  lint-main:
     strategy:
       matrix:
-        platform: [ "ubuntu-latest" ]
+        platform: ["ubuntu-latest"]
     runs-on: ${{ matrix.platform }}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Lint
-      run: make lint-go
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Lint main.go
+        run: make lint-go-main
+
+  lint-goroutine:
+    strategy:
+      matrix:
+        platform: ["ubuntu-latest"]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Lint go-routine.go
+        run: make lint-go-routine
