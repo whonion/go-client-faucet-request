@@ -3,7 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"math/rand"
 	"net/http"
 	"net/url"
@@ -25,7 +25,7 @@ func main() {
 		return
 	}
 
-	rand.Seed(time.Now().UnixNano()) // Seed random number generator
+	rand.New(rand.NewSource(time.Now().UnixNano())) // Create a new random generator
 
 	userAgents, err := readLines("useragents.txt")
 	if err != nil {
@@ -76,7 +76,7 @@ func main() {
 		}
 
 		defer resp.Body.Close()
-		body, err := ioutil.ReadAll(resp.Body)
+		body, err := io.ReadAll(resp.Body)
 		if err != nil {
 			fmt.Println("Error reading response body:", err)
 			continue
