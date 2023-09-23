@@ -1,4 +1,4 @@
-[![Go version][go-badge]][go-url] [![go-report][go-report-badge]][go-report-url] [![Lint][lint-badge]][lint-url] [![Test][test-badge]][test-url] [![Build][build-badge]][build-url] [![Makefile][makefile-badge]][makefile-url]
+[![Go Reference](https://pkg.go.dev/badge/github.com/whonion/go-client-faucet-request.svg)](https://pkg.go.dev/github.com/whonion/go-client-faucet-request) [![Go version][go-badge]][go-url] [![go-report][go-report-badge]][go-report-url] [![Lint][lint-badge]][lint-url] [![Test][test-badge]][test-url] [![Build][build-badge]][build-url] [![Makefile][makefile-badge]][makefile-url]
 # Faucet-client for send multi-request to server using proxy</br>
 Implementation with go-routines and without
 ## Package description:
