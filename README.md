@@ -1,4 +1,5 @@
 [![Go Reference](https://pkg.go.dev/badge/github.com/whonion/go-client-faucet-request.svg)](https://pkg.go.dev/github.com/whonion/go-client-faucet-request) [![Go version][go-badge]][go-url] [![go-report][go-report-badge]][go-report-url] [![Lint][lint-badge]][lint-url] [![Test][test-badge]][test-url] [![Build][build-badge]][build-url] [![Makefile][makefile-badge]][makefile-url]
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwhonion%2Fgo-client-faucet-request.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwhonion%2Fgo-client-faucet-request?ref=badge_shield)
 # Faucet-client for send multi-request to server using proxy</br>
 Implementation with go-routines and without
 ## Package description:
@@ -59,3 +60,7 @@ go run  go-routine.go
 
 [hint-badge]: https://hits.dwyl.com/whonion//go-client-faucet-request.svg
 [hint-url]: https://hits.dwyl.com/whonion/go-client-faucet-request
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwhonion%2Fgo-client-faucet-request.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwhonion%2Fgo-client-faucet-request?ref=badge_large)
